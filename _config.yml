@@ -1,0 +1,16 @@
+title: DNF
+header-img: img/home-bg.jpg
+email: jrohel@redhat.com
+description: > # this means to ignore newlines until "baseurl:"
+  The blog of the DNF Team
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://rpm-software-management.github.io" # the base hostname & protocol for your site
+github_username: rpm-software-management
+
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+paginate: 5
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+
+plugins: [jekyll-paginate, jekyll-feed]

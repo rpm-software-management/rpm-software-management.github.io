@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "DNF 0.4.4 Released"
+date:   2013-10-15 09:02:36 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+Jan Šilhan finished and got merged his initial patch to support Python 3 in DNF last week so we released a new version yesterday. The 0.4.4 also includes a couple of tweaks to the slowly emerging API and a fix to the bug where <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1017278">DNF ignores the file conflicts and naturally finishes the transaction set.</a>
+
+About Python 3: do not expect <code>dnf install package</code> and similar to run from CLI just yet, we are still waiting for F20 GA for all the components involved to be available for Py3. Many <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1010302">thanks to Tim Lauridsen for quickly porting python-iniparse.</a> The plan now is to give Py3 and DNF heavy testing during the Fedora 21 development cycle and eventually switch to it as the default. Then drop Python 2 support as soon as Anaconda is running in Python 3.
+
+Read the full <a href="http://akozumpl.github.io/dnf/release_notes.html#id15">release notes to dnf-0.4.4.</a>

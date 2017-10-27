@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "DNF in the time of NSA"
+date:   2016-02-19 13:40:32 +0100
+author: Michal Luščon <mluscon@redhat.com>
+visible: 1
+categories: dnf
+---
+Thanks to Michal Sherer, a big computer security enthusiast, the DNF users are now able to enhance the privacy and the security of their systems using Tor network for metadata and packages downloading. For those of you who are not familiar with the basic concepts of Tor networking there is a <a href="https://www.torproject.org/about/overview.html.en">short introduction</a> available on the project pages. Hiding your identity during the communication with mirrors reduces the ability of potential sniffing attacker to determine the exact applications and their versions used on your system and most likely secures your downloading from the attacks like <a href="http://www.wired.com/2015/04/researchers-uncover-method-detect-nsa-quantum-insert-hacks/">quantum insert</a>.
+
+Since this feature has been introduced in <code>DNF-1.1.6-1</code>, it should be already available in your supported up to date Fedora installations and it can be enabled in the following four easy steps:
+<h3>1, Installation</h3>
+First of all, you have to install tor package from your distribution repository. You can do so via your favorite package manager by executing '<code>dnf install tor'</code>, that will install <code>tor</code> and <code>torsocks</code> packages into your system.
+<h3>2, Configuration of Tor</h3>
+By default, the Tor SOCKS proxy is configured to run in a client mode listening on your <code>localhost</code> port <code>9050</code>. This default configuration might be altered by editing the <code>torsocks.conf</code> file located inside <code>/etc/tor/</code> directory.
+<h3>3, Activation of Tor service</h3>
+Start the Tor proxy by <code>systemct start tor</code> and enable it permanently by <code>systemctl enable tor. </code> Check whether Tor service is up and properly running by <code>systemct status tor </code>.
+<h3>4, Configuration of DNF</h3>
+On the DNF side of configuration, the only required step is to simply add <code>proxy=socks5h://127.0.0.1:9050</code> line into your <code>/etc/dnf/dnf.conf</code>. From this point, any upcoming DNF communication with remote servers will be routed through the Tor network.
+
+P.S.: I guess that even more of Tor awesomeness is coming soon in <a href="https://github.com/rpm-software-management/dnf-plugins-extras/pull/52">DNF plugins extras</a>.
+
+&nbsp;

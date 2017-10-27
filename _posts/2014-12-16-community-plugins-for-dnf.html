@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "Community plugins for DNF"
+date:   2014-12-16 11:33:26 +0100
+author: Igor Gnatenko <i.gnatenko.brain@gmail.com>
+visible: 1
+categories: dnf
+---
+Today we have started new project <a title="dnf-plugins-extras" href="https://github.com/rpm-software-management/dnf-plugins-extras"><code>dnf-plugins-extras</code></a> where could be hosted any external DNF plugin with any dependencies.
+
+We will add this package to Fedora soon. Then you can request new plugin and report a bug in RedHat Bugzilla. Sure, pull requests are welcomed to integrate any utilities with DNF!
+
+At this moment <a title="Snapper Plugin docs" href="http://rpm-software-management.github.io/dnf-plugins-extras/index.html">snapper</a> plugin is available in the repository. It creates snapshots every transaction via <a title="snapper" href="http://snapper.io/">snapper</a> daemon, which is powerful tool to manage snapshots.
+
+<strong>Q:</strong> Why just not to add community plugins to core plugins?
+<strong>A:</strong> We want to keep the core plugins minimal.

@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "DNF 0.5.4 Released"
+date:   2014-07-16 14:24:48 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+0.5.4 has been released today. 
+</p>
+
+<p>A major improvement in this release is the <a href="http://akozumpl.github.io/dnf/conf_ref.html#repo-options">repo priorities</a> config option. With it the admin can enforce packages of a certain repository to take precedence over other ones during an upgrade even when the prioritized packages have lower version. The original DNF bug is <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1048973">here</a>, the functionality is known from Yum Utils as "priority plugin".
+</p>
+
+<p>
+The stream of Unicode/encoding problems people run into is not ending unfortunately. <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1118796">Rather critical problem has been fixed now</a>. We look forward to fully move to Python 3, and if you want to help the cause please gently say so in the <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1119761">EPEL7 python3 bugzilla</a>.
+</p>
+
+<p>
+Fedorians, note that you can start experimenting with Python 3 from CLI with this release, as the <code>python3-dnf</code> now ships <code>/usr/bin/dnf-3</code>. Note that the binary is experimental and will be removed once Python 3 becomes the default interpreter for the main DNF package, hence it is not and will not be documented anywhere.
+</p>
+
+<p><a href="http://akozumpl.github.io/dnf/release_notes.html#id35">Release notes</a> are published at the usual spot.</p>

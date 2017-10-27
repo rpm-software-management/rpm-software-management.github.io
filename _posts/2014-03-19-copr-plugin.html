@@ -1,0 +1,64 @@
+---
+layout: post
+title:  "Copr Plugin"
+date:   2014-03-19 08:47:06 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p><i>(contributed by <a href="http://miroslav.suchy.cz/blog/">Miroslav Suchý</a>)</i></p>
+
+<p>
+New dnf-plugins-core introduces new <a href="http://copr.fedoraproject.org/">copr</a> plugin.
+</p>
+
+<p>
+You can list projects of some user:
+
+<pre>
+  # dnf copr list bkabrda
+  ==================== List of bkabrda coprs =====================
+  bkabrda/python27rebuild : Collection with Python 2.7 for EPEL 6
+                          : (currently just for testing).
+  bkabrda/python-3.4 : Testing repository for Python 3.4 that is
+                     : supposed to go to F21. 
+</pre>
+</p>
+
+<p>
+We have plan for generic search function as well, but it will land in some future version.
+</p>
+
+<p>
+You can easily enable some project:
+
+<pre>
+ # dnf copr enable bkabrda/python-3.4 fedora-20-x86_64
+
+ You are going to enable Copr repository. Please note that this repository is not
+ part of Fedora distribution and may have various quality. Fedora distribution
+ have no power over this repository and can not enforce some quality or security
+ level.
+
+ Please do not file bug reports about this packages in Fedora Bugzilla.
+ In case of problems you should contact owner of this repository.
+
+ Do you want to continue? [y/N]: y 
+ Repository successfully enabled.
+</pre></p>
+
+<p>
+You can even omit last argument and it will be guessed. But currently there is know bug, which will
+be fixed in next release, therefore you need to specify chroot.
+This command will download repo file and save it as <code>/etc/yum.repos.d/_copr_bkabrda-python-3.4.repo</code>
+</p>
+
+<p>
+You can disable project:
+<pre>
+ # dnf copr disable bkabrda/python-3.4 
+ Repository successfully disabled.
+</pre>
+
+which will remove previously downloaded repo file.
+</p>

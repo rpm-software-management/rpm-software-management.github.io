@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "DNF 0.5.2 Released"
+date:   2014-05-28 11:55:22 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+DNF 0.5.2 is being released today. Our biggest hope from this release is that the <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1092777">Unicode-related</a> <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1095861">crashes</a> some people were getting are resolved.
+</p>
+
+<p>
+One thing we've been repeatedly asked for is <a href="https://bugzilla.redhat.com/show_bug.cgi?id=963345"><i>autoremove</i></a>. Delivered in 0.5.2, the command looks at the packages installed, and the reasons why they were installed. Those that were explicitly installed by the user are left untouched. Those that were installed as a dependencies are left untouched if they are needed by some of the packages in the first group, else they are removed. This way only the packages that the user wants and their dependencies remain on the system. Also see the <a href="http://akozumpl.github.io/dnf/command_ref.html#auto-erase-command">documentation</a>. Note that those people who exclusively use DNF for their packaging operations <b>and have <code>clean_requirements_on_remove</code> enabled</b> will only get empty transactions from <code>autoremove</code>. The rest can benefit.
+</p>
+
+<p>
+<a href="http://akozumpl.github.io/dnf/release_notes.html#id33">Release notes</a> have been published, Fedora 20 update is coming shortly.
+</p>
+
+<p>
+New core plugins are also out (0.0.8) today. It now includes a download plugin (when you just want to get an .rpm file on your filesystem but are not particularly interested in installing it) and manpage documentation.
+</p>

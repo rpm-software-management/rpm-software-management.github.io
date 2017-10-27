@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "DNF 0.4.12 Released"
+date:   2014-01-21 07:37:36 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+We're happy to announce another patchlevel release today, builds are available in Fedora 20 and Rawhide.
+</p>
+
+<p>
+The main reason to release today were some <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1051554">negative reactions about the fastestmirror feature</a>. While measuring pinging latency to different mirrors is a good idea in theory, fastestmirror in practice generally yields worse mirror picks then MirrorManager offers by default. Further, because even measuring the latency takes a couple of seconds, the results of the tests are cached (e.g. <code>/var/cache/dnf/x86_64/20/fastestmirror.cache</code>). The cache is then used for 30 days and then the test is redone. For users who move between different networks (home, office) the cached value is often wrong, pointing to a lot slower mirror then actually available. We thus make fastestmirror configurable starting with 0.4.12, the default being off.
+</p>
+
+<p>
+A serious bug was discovered in the erase command that can possibly cause <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1049025">unintended removal of important packages</a> that DNF considers uneeded dependencies. The presented release fixes that.
+</p>
+
+<p>
+There's also two updates to the <a href="http://akozumpl.github.io/dnf/user_faq.html">User's FAQ</a>. See more in the <a href="http://akozumpl.github.io/dnf/release_notes.html#id23">release notes</a>.
+</p>

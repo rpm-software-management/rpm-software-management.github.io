@@ -1,0 +1,17 @@
+---
+layout: post
+title:  "Yum is dead, long live DNF"
+date:   2015-05-11 17:42:32 +0100
+author: Jan Šilhan <jsilhan@redhat.com>
+visible: 1
+categories: dnf
+---
+Do you wonder why you don’t have yum package installed on the Fedora 22 clean installation and why you get warnings when calling /usr/bin/yum executable or any yum-util plugin about deprecation of Yum? You see right, Yum is gone. Literally. And DNF is the new default Fedora package manager.
+
+DNF is fork of Yum with the state-of-art SAT-based dependency solver and was supposed to replace Yum in Fedora 22. Now with the <a href="http://dnf.baseurl.org/2015/05/11/dnf-1-0-and-dnf-plugins-core-0-1-7-released/">release of DNF version 1.0</a>  it is the time to fulfill this <a href="http://fedoraproject.org/wiki/Changes/ReplaceYumWithDNF">destiny</a>. This radical change was inevitable. Yum would not survive the "Python 3 as default" Fedora initiative meanwhile DNF is able to run on Python 2 and Python 3. Command line interface was preserved when it made logical sense of command semantic. Fortunately <a href="http://dnf.readthedocs.org/en/latest/use_cases.html">DNF Python API</a> is completely different from Yum. All known <a href="http://dnf.readthedocs.org/en/latest/cli_vs_yum.html">incompatibilities</a> between these two projects are documented. In Fedora 22 Core is DNF only and Yum is officially considered dead project. If anyone wants to download Yum she or he can. The package is still called the same and Python API remains for the time being. Just the yum executable file was renamed to yum-deprecated, and yum calls from command line are redirected to DNF. This way you can maintain both Yum and DNF on the system at the same time.
+
+The reason of initiating DNF project was because of the biggest three pitfalls of Yum: undocumented API,  broken dependency solving algorithm and inability to refactor internal functions. The last mentioned issue is connected with the lack of documentation. Yum plugins are using any method from Yum code base thus any change there would cause the sudden crash of the Yum utility. The DNF aim was to avoid mistakes made in Yum. From the start all exposed API functions were properly documented. The tests were included with almost every new commit. No quick and dirty hacks are allowed. The project is directed by agile development - the features that have the greatest impact on users are operatively implemented with higher priority.
+
+Nowadays DNF team is working on porting the rest of popular plugins from Yum to DNF and improving the user experience. To make the switch for you a little easier we have implemented DNF <a href="http://dnf-plugins-extras.readthedocs.org/en/latest/migrate.html">migration plugin</a> for importing installed packages, groups and transaction metadata from Yum to the new Fedora package manager. Happy transition and enjoy the DNF ride!
+
+Jan Silhan, by DNF team

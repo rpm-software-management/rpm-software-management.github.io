@@ -1,0 +1,30 @@
+---
+layout: post
+title:  "DNF 0.5.3 and Core DNF Plugins 0.1.1 Released"
+date:   2014-07-03 08:14:51 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+Hello, after one month the team is releasing a new version of DNF and its core plugins. We're still getting reports of problems with Unicode and translations and the current release does away with many of them.
+</p>
+
+<p>
+People on older and special networks will appreciate addition of the <code>-4</code> CLI switch to force IPv4 DNS resolving.
+</p>
+
+<p>
+Besides that, the focus in DNF was on extending the API to enable implementation of the popularly demanded <a href="http://akozumpl.github.io/dnf-plugins-core/protected_packages.html">protected_packages</a> plugin. The plugin works by checking a resolved transaction and stopping it immediately in cases where an explicitly protected package or the running kernel should get removed.
+</p>
+
+<p>
+See also:
+</p>
+
+<ul>
+<li><a href="http://akozumpl.github.io/dnf/release_notes.html">DNF 0.5.3 Release Notes</a></li>
+<li><a href="http://akozumpl.github.io/dnf-plugins-core/release_notes.html">Core DNF Plugins 0.1.1 Release Notes</a></li>
+</ul>
+
+<p>Happy packaging.</p>

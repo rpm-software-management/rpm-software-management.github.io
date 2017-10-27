@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "DNF 0.4.15 Released"
+date:   2014-02-24 17:53:36 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+A lot of the recent effort in DNF development is targeted to enable more features of the DNF Anaconda backend. The backend now for instance knows to pick the right filesystem out the available to download packages to so large installations will no longer fail on filling the ramdisk. Another missing piece is any progress displayed during the downloads, the current Anaconda only shows <i>Downloading packages</i>, then goes on for many minutes doing something in silence. To provide neat API for reporting the download progress we had to refactor large portions of the download code and the result is in the release presented.
+</p>
+
+<p>
+Experimental support for some of the <code>repo-pkgs</code> commands known from Yum since last year is also making its way to DNF. Expect official announcement soon.
+</p>
+
+<p>
+A <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1048788">bug in parsing the architecture specified on the command line</a> and a couple of other bugs, some of them in the documentation, are fixed now too. <a href="http://akozumpl.github.io/dnf/release_notes.html#id26">Follow the release notes link</a> for more.
+</p>

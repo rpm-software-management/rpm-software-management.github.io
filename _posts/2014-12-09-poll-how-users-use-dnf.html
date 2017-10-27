@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "Poll: How users use DNF"
+date:   2014-12-09 17:16:22 +0100
+author: Radek Holý <RadekHolyPublic@gmail.com>
+visible: 1
+categories: dnf
+---
+Dear users of YUM and DNF,
+
+I'm writing to you regarding a request for your feedback. I would be very grateful if you could send me a brief description of how you use YUM or DNF currently or how would you like to use it. I am particularly interested in the occurrences of "dnf/yum install" calls in your scripts. What does these scripts do and what do they expect when they call the "install" command in different situations? Or even your own aliases, plugins, workarounds and the other hacks that you always need to do your job properly would be very interesting.
+
+Please share with me the use cases, not the description of the "install" command. Think twice before you share something because I believe it's not as easy as it might seem. As an example I think it might be something like:
+<ul>
+	<li>"I call YUM install, because I want to get given packages into my system and I don't care whether it requires an upgrade or downgrade or what." or</li>
+	<li>"I want to get them there but it should protect me against dangerous operations like downgrades" or</li>
+	<li>"I often make typos, so I expect that the program knows what I mean" or</li>
+	<li>"it would be nice if it would literally perform the installation; if any of the packages cannot be installed because of any reason, it should fail".</li>
+</ul>
+Not something like: "that's obvious that the install command should never downgrade packages".
+
+Please focus on the <em>use cases</em>. The <em>real</em> (non-hypothetical) use cases. Not on the command's name as it might also result in a new command (while preserving the well-known install command together with an appropriate behaviour).
+
+Thank you very much in advance.

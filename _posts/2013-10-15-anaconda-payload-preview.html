@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Anaconda Payload Preview"
+date:   2013-10-15 09:30:19 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+The Anaconda to be shipped with Fedora 20 includes experimental DNF Payload to install packages for your system via DNF instead of Yum. This is an important proof of concept for DNF and a validation of our approach. If you'd like to try the payload out with Fedora 20 Beta, just add the "dnf" parameter to the kernel boot line when booting the installation media. Any bugs found, report them to the <a href="http://bugzilla.redhat.com">Red Hat bugzilla</a> against Anaconda. They will not be able to block the F20 release, but, if valid, will be dealt with eventually.
+
+The payload downloads all packages in parallel. It is thus going to be faster for network installations and the quick measurements I did yesterday on a KVM machine (hosted on a regular i7 laptop with SSD) yielded some encouraging results. Automatic kickstart installation, only the @Core group included, time taken from the boot of the installation image to the moment when Anaconda screen that says 'Complete' appears):
+
+<ul>
+<li>yum: 7min 54s</li>
+<li>DNF: 4min 19s</li>
+</ul>
+
+The Payload can currently be used only to install relatively low amount of packages as it downloads the .rpms to the installation ramdisk. The downloading and displaying the download progress is one area that still needs work.

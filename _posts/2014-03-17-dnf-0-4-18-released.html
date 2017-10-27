@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "DNF 0.4.18 Released"
+date:   2014-03-17 09:32:12 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+The new release is making its way to Fedora mirrors as I write this. <a href="http://akozumpl.github.io/dnf/release_notes.html#id29">The notes are up.</a>
+<p>
+
+<p>
+<a href="https://bugzilla.redhat.com/show_bug.cgi?id=963710">Distro-syncing specific subsets of packages</a> is finally here. Also 0.4.18 marks the move to objectified groups, something Yum did in 2012. Things might look a bit shaky on the groups front for some time while the precise semantics settles but the basic operations work and support for installing <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1067136">optional packages</a> has been added again. Moreover, the changes provide new API that allows the DNF Anaconda payload to <a href="http://akozumpl.github.io/dnf/api_base.html#dnf.Base.group_install">exclude packages from transaction as the user wishes</a>.
+</p>
+
+<p>
+API also sees some spring cleaning of parts that we've deprecated and kept in the cellar since last December.
+</p>

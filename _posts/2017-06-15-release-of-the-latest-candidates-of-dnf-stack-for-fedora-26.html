@@ -1,0 +1,43 @@
+---
+layout: post
+title:  "Release of the latest candidates of dnf stack for Fedora 26"
+date:   2017-06-15 07:07:10 +0100
+author: Jaroslav Mracek <jmracek@redhat.com>
+visible: 1
+categories: dnf
+---
+I think if I will start to talk that Fedora 26 is coming and that there will be DNF-2.x as default packager, I am not providing any new information.
+But If I will say that DNF made a huge progress not only from point of presence of new features, enhanced stability and over all user experience, probably it would be something to attract  people's attention. The latest releases have provided the spirit with following highlights:
+
+<strong>DNF-2.5.1 (since 2.4.1)
+</strong>
+<ul>
+	<li>Redesigned reports of problem. Now package upgrades will be not skipped silently</li>
+	<li>Implemented progress of DRPM</li>
+	<li>Localized datetime format</li>
+	<li>Enhanced documentation</li>
+	<li><a href="http://dnf.readthedocs.org/en/latest/release_notes.html#release-notes">Detailed information about DNF releases</a></li>
+</ul>
+<strong>DNF-PLUGINS-CORE-2.1.1 (since 2.0.0)
+</strong>
+<ul>
+	<li>Introduced DNF-UTILS subpackage that provides binaries previously known from YUM-UTILS</li>
+	<li>Enhanced documentation of plugin Versionlock</li>
+	<li>Plugin Versionlock will be not applied for commands without transaction like <em>list</em>, <em>info</em>, <em>repoquery</em> ...</li>
+	<li><a href="http://dnf-plugins-core.readthedocs.org/en/latest/release_notes.html#release-notes">Detailed information about DNF-PLUGINS-CORE releases</a></li>
+</ul>
+<strong>DNF-PLUGINS-EXTRAS-2.0.1 (since 2.0.0)</strong>
+<ul>
+	<li>Check if plugin is removed in trans</li>
+	<li><a href="http://dnf-plugins-extras.readthedocs.org/en/latest/release_notes.html#release-notes">Detailed information about DNF-PLUGINS-EXTRAS releases</a></li>
+</ul>
+<strong><strong>LIBDNF-0.9.1 (since 0.8.3)
+</strong></strong>
+<ul>
+	<li>Improved handling of installonly packages and running kernel protection</li>
+	<li>Improved reports from libsolv (no redundant messages in particular problem set)</li>
+	<li>Install packages with lover version than already installed will allow downgrade of dependencies</li>
+	<li>Methods (problem_conflicts(),  problem_broken_dependency())  from python API where moved into C code</li>
+	<li>Python property problem_rules where changed to method and moved into C code</li>
+</ul>
+Additionally all of this releases fixes together over 30 bugs in whole DNF stack.

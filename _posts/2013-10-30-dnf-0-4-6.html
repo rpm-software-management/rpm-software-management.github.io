@@ -1,0 +1,21 @@
+---
+layout: post
+title:  "DNF 0.4.6 Released"
+date:   2013-10-30 09:53:30 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+0.4.6 brings two new major features and much more. Firstly, a series of patches revives the history undo command, so transactions can be reverted now. In essence undoing a transaction is performing its inverse transaction. There is a couple of things worth mentioning to this: if one package replaced another in the original transaction than to perform the undo the original package needs to be available in a repository somewhere and also if RPM fails to validate the inverse transaction (typically because of dependency errors), then that's it, DNF will not force it. So keep your RPMDB consistent and healthy at all times and if a package is missing mail your favorite Fedora infra admin about the way we remove superseded packages from the update repos.
+
+Secondy, DNF will now limit the number of installed kernels and <i>installonly</i> packages in general to the number specified by <code>installonly_limit</code> in the config. People who got bitten by <a href="https://bugzilla.redhat.com/show_bug.cgi?id=880524#c8">having 15 kernels installed and running out of space on <code>/boot</code></a> shall suffer no more.
+
+There are vast internal changes to <code>dnf.cli</code>, the subpackge that provides CLI in DNF. In particular, it is now better separated from the core which in turns allows simplification of some unit tests and makes (the up and coming) API more reasonable. Oh and saves us a a lot of "WTF is that?" from new upstream contributors.
+
+The hawkey library used against DNF from with this versions uses a <a href="https://github.com/openSUSE/libsolv/commit/843dc7e1">recent RPMDB
+loading optimization in libsolv</a> that shortens DNF startup by seconds when the cached RPMDB is invalid. This generally applies in every DNF run after the RPMDB has changed (for instance the previous DNF run did an installation). Measured on a box with a mid-range SSD and all around average specs, the RPMDB load time itself drops from 1900 ms to about 150 ms. Not bad, but all the credit for this really goes to Michael Schroeder of the SUSE/libsolv fame.
+
+We have also added further fixes to support Python 3 and enabled <a href="https://github.com/Tojaj/librepo/commit/b8a063763ccd8a84b8ec21a643461eaace9b9c08">librepo's
+fastestmirror caching optimization</a> so the slowdown some of us have observed after enabling fastestmirror few releases back should get reduced again.
+
+Please also see the <a href="http://akozumpl.github.io/dnf/release_notes.html#id17">0.4.6 release notes for a complete list of bugs fixed</a>.

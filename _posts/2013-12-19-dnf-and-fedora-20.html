@@ -1,0 +1,47 @@
+---
+layout: post
+title:  "DNF and Fedora 20"
+date:   2013-12-19 10:02:05 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+<i>(This article is an invitation for the regular Fedora users to start using DNF as their main package manager. If you are near Fedora development, read the Development discussions list or visit this blog then the article is not going to reveal much new, sorry.)</i></p>
+
+<hr>
+
+<p><i>
+Have you ever tried Yum to install or manage your software and got disappointed? Was it ever so slooow? Or have you tried to write a Yum extension, drowned in the API, failed? We have something different to offer now: DNF&mdash;the next generation of package management.</i></p>
+
+<p>
+DNF is a package manager that was forked from Yum in early 2012 with the goal of building something that looks and feels like Yum from the command line but provides better experience for people interested in writing plugins and extensions for DNF.
+</p>
+
+<p>
+The first Fedora where we shipped was F18 the last winter. Many Yum commands were missing and the early adopters got surprised a lot. That is no more the case with the version shipped in F20 (0.4.9) as DNF gets more stable and feature-full, pretty much everything known from Yum works in DNF. Give DNF a chance today, simply by having it installed ('yum install dnf') and from then on replacing the word 'yum' with the word 'dnf' each time you need to do some packaging, e.g.:
+</p>
+
+<code>dnf install thunderbird</code>
+
+<p>
+or:
+</p>
+
+<code>dnf upgrade -y</code>
+
+<p>
+It is true that DNF will sometimes handle the command lines arguments or the depsolving puzzle or similar things differently. To help the users transition smoothly and know about any possible speed bumps ahead we have <a href="http://akozumpl.github.io/dnf/cli_vs_yum.html">a document</a> that sums these things up.
+</p>
+
+<p>
+To compensate for your trouble we offer comfort and speed: DNF installs a system timer that makes sure the package metadata are up to date all the time. So a sudden invocation of DNF from shell doesn't take two minutes just to check the remote repositories for package updates but instead starts on the job immediately. We also use a very solid <i>depsolver</i> (developed and used by SUSE) under the hood. The early adopters report great speedups of the depsolving phase and our measurements indicate it treats the memory more economically.
+</p>
+
+<p>
+To put our money where our mouth is we use DNF daily to update and modify our systems and haven't had the software installation broken yet. During the autumn we integrated DNF within Anaconda so it is now possible to <a href="http://dnf.baseurl.org/2013/10/15/anaconda-payload-preview/">bootstrap the system without using Yum at all</a>. We listened to the early users and gave them the known Yum goodies like full history support and parallel download.
+</p>
+
+<p>
+What's happening in the future? We'll start shipping core DNF plugins soon, they will provide additional features that people miss from Yum but that quite don't belong in the core DNF. Developers should check out our <a href="http://akozumpl.github.io/dnf/api.html">growing API</a>. The Anaconda integration needs some fixes and polishing. And then there's the feedback you're going to give us after trying out DNF in F20 that we have to process and implement. The master plan of course is to give people everything they want from Yum and much more in DNF, and when Fedora 22 comes pronounce Yum dead and call DNF the new Yum!
+</p>

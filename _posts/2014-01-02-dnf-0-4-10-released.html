@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "DNF 0.4.10 Released"
+date:   2014-01-02 10:31:38 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+Hello and let us present you the 0.4.10, which brings enhancements to the plugin mechanism and fixes to eleven bugzillas.
+<p>
+
+<p>
+The plugins can now use two new hooks triggered <a href="http://akozumpl.github.io/dnf/api_plugins.html#dnf.Plugin.sack">after the sack is loaded</a> and <a href="http://akozumpl.github.io/dnf/api_plugins.html#dnf.Plugin.transaction">when a transaction is finished.</a> Further power of the DNF plugins is going to be in their ability to <a href="http://akozumpl.github.io/dnf/api_cli.html">register their own CLI commands</a>. For instance, work is underway to implement <code>dnf kickstart</code> as a plugin to <a href="https://github.com/akozumpl/dnf-plugins-core/blob/master/plugins/kickstart.py">install packages given by a kickstart file</a>
+</p>
+
+<p>
+As usual, <a href="http://akozumpl.github.io/dnf/release_notes.html#id21">the release notes</a> give the full story of enhancements and fixes in this release.
+</p>
+
+<p>
+<i>Fedora specific note: unfortunately due to some problems in unrelated packages, the Rawhide build is not available yet. We hope to be able to make one the next week.</i>
+</p>

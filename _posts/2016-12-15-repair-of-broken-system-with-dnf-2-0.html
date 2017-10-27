@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Repair of broken system with DNF-2.0"
+date:   2016-12-15 14:31:17 +0100
+author: Jaroslav Mracek <jmracek@redhat.com>
+visible: 1
+categories: dnf
+---
+I think quite a lot of users know the situation when you are unable to boot or run a system due to broken upgrade or problems created from the keyboard site. Recently I experience combination of both, but what then? First idea was to take out hard disk and connect it into working system, but then better idea appeared. The Fedora is delivered on boot-able live CD and I remembered that somewhere I have one. But will it work, and can I repair Fedora 25 from Fedora 23 live CD? Lets see what happened.
+
+After booting from CD I checked if I can see the hard disk with broken system. I open from Activities application called Files and in “Other Locations” I opened the disk with Fedora 25. Data were there and I was happy that at least something is working. Now I moved my attention to terminal. I know that if I want to do repair I have to upgrade DNF of running system into DNF-2.0 from dnf-nightly repository on copr and I did ('<strong>dnf copr enable rpmsoftwaremanagement/dnf-nightly'</strong> then '<strong>dnf upgrade dnf'</strong>). The reason to do that was that dnf-2.0 provides many patches for installroot and additionally it provides commands like <strong>check</strong> or option <em><strong>--duplicates</strong></em> for remove command that are pretty handy for repair of the system.
+
+The next question was how to find path to my broken system in terminal. I have seen that I have some directories with unique names (say crazy names) in root dir and I searched for them by '<strong>sudo find / -name &lt;name_dir&gt; </strong> ' or if you don’t have such, it is possible to create it in tmp/ dir on disk that you search for by Files, because for that directory you don't need any special permission. From this research I got the path for <strong><em>--installroot</em></strong> option.
+
+Consequently I was able to begin with repair. First I tried repolist command if I can see repositories of my original system and if releasever is correctly detected. Another good news, the command <strong>'dnf –installroot=/&lt;path/to/disk&gt; repolist</strong>' worked like expected. I know that accidentally I removed one package required by selinux and I successfully installed it by '<strong>dnf --installroot=/&lt;path/to/disk&gt; install selinux-policy-targeted</strong>'. Then I started with removing of duplicates discovered by command '<strong>dnf --installroot=/&lt;path/to/disk&gt; check</strong>'. The first attempt was with command <strong>'dnf --installroot=/&lt;path/to/disk&gt; remove --duplicates</strong>' but it didn’t work because I had some duplicates with unsatisfied dependencies, therefore it tried to remove too many packages. Therefore I continued with remove of each of duplicates by '<strong>dnf --installroot=/&lt;path/to/disk&gt; remove</strong> '. But this time I was very careful to not remove something that I don’t want, because for first time I tried to remove duplicate of <em>selinux-policy</em> and I remove the only copy that had installed all dependencies and kept the version that don’t have <em>selinux-policy-targeted</em>.
+Last problems that remain on my system were duplicates of <em>dnf</em> and <em>python3-dnf</em>, but I was unable to remove them with information: Error: The operation would result in removing the following protected packages: dnf. Well here helped rpm ('<strong>rpm -e </strong>'). Then I did upgrade of the system and everything looked good. It was the point when I tried if the system was repaired – reboot. And the system was again alive. The last question was if all packages were installed correctly from primary cause of the story - broken upgrade. I decided to do the last step, reinstall of all packages by “<strong>dnf reinstall ‘*’</strong> ”.
+
+This is the end of the story, my system works again due to Live CD technology and DNF-2.0.
+
+<strong>Long live to Fedora and DNF.</strong>
+
+Jaroslav Mracek

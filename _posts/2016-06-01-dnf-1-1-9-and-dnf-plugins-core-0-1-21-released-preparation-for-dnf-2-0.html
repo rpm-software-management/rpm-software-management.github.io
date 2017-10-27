@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "DNF 1.1.9 and DNF-PLUGINS-CORE 0.1.21 Released (preparation for DNF 2.0)"
+date:   2016-06-01 18:50:27 +0100
+author: Jan Šilhan <jsilhan@redhat.com>
+visible: 1
+categories: dnf
+---
+New version of DNF and DNF-PLUGINS-CORE is out. This release is focused on stability and should ease the transition for prepared DNF 2.0. Any call of not documented and so not supported Python methods should print warning. If you see them and you would like the methods to be included into DNF API, please, <a href="https://github.com/rpm-software-management/dnf/wiki/Bug-Reporting#api-proposals">file an RFE</a> (they will be vanished in DNF 2.0). In plugins the major improvements were made in repoquery - speedup of `- -resolve` and reverse queries on weak deps are working with glob expressions. More information about the release can be found in <a href="http://dnf.readthedocs.org/en/latest/release_notes.html#release-notes">DNF</a> and <a href="http://dnf-plugins-core.readthedocs.org/en/latest/release_notes.html#release-notes">plugins release</a> notes.

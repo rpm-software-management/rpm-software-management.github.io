@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "The first DNF update for Fedora 26"
+date:   2017-08-02 07:01:04 +0100
+author: Jaroslav Mracek <jmracek@redhat.com>
+visible: 1
+categories: dnf
+---
+The release of Fedora 26 provides the new DNF-2.x to wide pool of users. The first DNF update reflect the first user's feed backs and additionally it solves 23 bugs. The latest release has provided the following highlights:
+
+DNF-2.6.2
+<ul>
+	<li>New option<strong> --forcearch=&lt;arch&gt; </strong>that force to use given architecture. However, use of an architecture not supported natively by your CPU will require emulation of some kind. This is usually through QEMU</li>
+	<li>New option <strong><em>--groupmember</em></strong> for <strong>repoquery</strong> command</li>
+	<li>New option <strong>--downloaddir</strong> <strong>&lt;path&gt;</strong> that can be combine with <strong>--downloadonly</strong> option</li>
+	<li>Inform about skipped packages during installation of groups</li>
+	<li>New conf options (basearch, arch, ignorearch)</li>
+	<li><a href="http://dnf.readthedocs.org/en/latest/release_notes.html#release-notes">Detailed information about DNF releases</a></li>
+</ul>
+DNF-PLUGINS-CORE-2.1.3
+<ul>
+	<li>Changed return code if dnf config-manager --add-repo fails</li>
+	<li><a href="http://dnf-plugins-core.readthedocs.org/en/latest/release_notes.html#release-notes">Detailed information about DNF-PLUGINS-CORE releases</a></li>
+</ul>
+LIBDNF-0.9.3
+<ul>
+	<li>Changed priorities in NEVRA parsing. This change should provide user preferred results especially in cases where multiple valid solution available.</li>
+</ul>

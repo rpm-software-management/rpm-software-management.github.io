@@ -1,0 +1,39 @@
+---
+layout: post
+title:  "DNF 0.4.3 Released"
+date:   2013-10-07 13:44:07 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+Because the <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1012290">Too many open files</a> bug <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1015957">came back</a> and up until now DNF had to be released in lockstep with librepo, the new build is coming out earlier than expected.
+</p>
+
+<p>
+0.4.3 also brings back support for <code>group info</code> and <code>group remove</code> commands. The official <a href="http://akozumpl.github.io/dnf/release_notes.html#id14">release notes</a> have been published.
+</p>
+
+<p>
+Let's say a few words about using a precise version <code>Requires:</code> in an RPM spec, in Fedora. DNF currently uses few libraries that are new, that are developing violently and that unfortunately change their API now and then. I maintain one of them (hawkey) and know what it is like a for a new lib to commit to a certain API from the start and so didn't require that from libcomps nor librepo. To have some control however over what version DNF is using, because after all if the API changes and new library is released into Fedora repositories, the users will experience and report the strangest bugs, the spec contained lines like:
+</p>
+
+<pre>
+Requires: python-librepo = 0.1.2
+</pre>
+
+<p>
+The deal was that the librepo maintainer (and others) would let me know when he's about to do a new Fedora build, we'd update DNF to use the API at the desired librepo version and do a build in a lock-step with librepo.
+</p>
+
+<p>
+There are several drawbacks to this which together render the whole approach unworkable. Most of them have to do with buildroots in a branched Fedora, where only packages tagged stable or put into a "buildroot override" can be built against. This slows down the builds as e.g. putting a new librepo into the buildroot override does not happen instantly.
+</p>
+
+<p>
+Even worse can be the situation in the rawhide Fedora. If a packager of a required library suddenly decides to make a new build without cooperating with the DNF team, the koji builder won't stop him. It just considers the last built version the current and starts sending emails around that DNF has broken dependencies as it depends on a version that is no longer current. <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1014900">And we receive bugs.</a>
+</p>
+
+<p>
+The new arrangement is the same as for most packages: have some minimal dependency version and require a version greater or equal that. While it is promising to make our life easier, it will occasionally break things for the user. In part, this exposes how imperfect the current Fedora build and update policies are, and in part it supports two concepts that we so often fight against in packaging: support for multiple parallel versions in a distribution and app bundling.
+</p>

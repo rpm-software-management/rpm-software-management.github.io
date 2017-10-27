@@ -1,0 +1,44 @@
+---
+layout: post
+title:  "Reporting Depsolving Bugs"
+date:   2013-11-25 11:12:15 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+So you are seeing an error that looks similar to:
+</p>
+
+<p>
+<code>
+--> Starting dependency resolution
+--> Finished dependency resolution
+Error: package kernel-modules-extra-3.13.0-0.rc0.git3.2.fc21.i686 requires kernel-uname-r = 3.13.0-0.rc0.git3.2.fc21.i686, but none of the providers can be installed
+</code>
+</p>
+
+<p>
+In some cases this means a package can not be installed because it is missing some of its dependencies (i.e. DNF does not see them in any enabled repository). It can also mean a bug in the depsolving machinery. If you suspect that is the case, <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&component=dnf">open a bugzilla</a>, of course, but also execute the failing run again with <code>--debugsolver</code> added on the command line and attach the <code>debugdata/</code> directory that will be created after the failure under the current working directory.
+</p>
+
+<p>
+Typically one would use a line similar to:
+</p>
+
+<p>
+<code>$ sudo dnf --debugsolver upgrade</code>
+</p>
+
+<p>
+It is OK to zip the data or upload it somewhere public instead of the slow bugzilla (expect the zipped directory to be between five and ten megabytes). Also, if the bug is about a kernel depsolving problem we'll also need to know the particular version of kernel you are running, e.g.:
+</p>
+
+<code>
+$ uname -r
+3.11.100-100.fc19.x86_64
+</code>
+
+<p>
+Be prepared to sometimes be told that the problem is in your particular system or that the repositories are broken. Thanks for helping us in any case.
+</p>

@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "DNF 1.1.0 and DNF-PLUGINS-CORE 0.1.10 Released"
+date:   2015-08-11 19:20:35 +0100
+author: Jan Šilhan <jsilhan@redhat.com>
+visible: 1
+categories: dnf
+---
+Another crucial release of DNF is out with a lot of new features and over 20 bug fixes.
+
+Basic control mechanism for <a href="http://www.rpm.org/wiki/PackagerDocs/DependenciesOverview#Weakdependencies">weak dependencies </a>was added. Now you are able to query for all weak dependencies forward and backward way in repoquery and allow/disallow installing weak dependencies through `install_weak_deps` DNF configuration option.
+
+Moreover with all DNF stack you will be able to take advantage of rich dependencies in F23 along with newly added MIPS architecture support.
+
+Although DNF team encourages users to "do the things in the right (DNF) way", we still listen to community and implement the most requested features, the DNF is missing from yum. I am talking about `--skip-broken` in install command. To install the biggest given set of packages without raising error, when all dependencies cannot be satisfied, could be achieved by setting `strict` DNF configuration option.
+
+More information can be found in <a href="http://dnf.readthedocs.org/en/latest/release_notes.html#release-notes">DNF</a> and <a href="http://dnf-plugins-core.readthedocs.org/en/latest/release_notes.html#release-notes">DNF plugins release notes</a>.
+
+Enjoy this release and look forward to the next version.

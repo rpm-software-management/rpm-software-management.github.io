@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Installroot in DNF-2.0"
+date:   2016-10-21 06:42:22 +0100
+author: Jaroslav Mracek <jmracek@redhat.com>
+visible: 1
+categories: dnf
+---
+I have seen several discussions about proper behavior of <em>installroot</em> and often it happened that what was requested by one user several others declined. But all of them had one thing common, that they would like to have proper description of <em>installroot</em> behavior. Now I can proudly announce that <em>installroot</em> entered new era where the behavior is slightly changed, but documented in detail.
+
+Basically what was changed
+<ul>
+	<li><em>config</em> file and <em>reposdir</em> are searched inside the <em>installroot</em> first. If they are not present, they are taken from host system. But when a path is specified within command line argument (<em><strong>--config=</strong></em> in case of config file or <em><strong>--setopt=reposdir=</strong></em> for <em>reposdir</em>) then this path is always related to the host with no exceptions.</li>
+</ul>
+<ul>
+	<li><em>pluginconfpath</em> is taken from <em>installroot</em></li>
+</ul>
+If you think that <em>reposdir</em> behavior is not so new, you are completely right, because it is same like in YUM.
+
+The documentation was also enhanced with following examples:
+
+<dl><dt><code>dnf --installroot=&lt;installroot&gt; --releasever=&lt;release&gt; install system-release</code></dt><dd>Sets permanently the <code>releasever</code> of the system within <em><code>&lt;installroot&gt;</code></em> directory from given <em><code>&lt;release&gt;</code></em>.</dd><dt><code>dnf --installroot=&lt;installroot&gt; --setopt=reposdir=&lt;path&gt; --config /path/dnf.conf upgrade</code></dt><dd>Upgrade packages inside of installroot from repository described by <strong><em><code>--setopt</code></em></strong> using configuration from <em><code>/path/dnf.conf</code></em></dd></dl>I am really happy that I can say that additional information can be found in <a href="http://dnf.readthedocs.io/en/latest/command_ref.html#installroot-label">DNF documentation</a>. Please have a fun with DNF.

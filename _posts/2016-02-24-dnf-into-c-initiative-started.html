@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "DNF into C initiative started"
+date:   2016-02-24 14:46:06 +0100
+author: Jan Šilhan <jsilhan@redhat.com>
+visible: 1
+categories: dnf
+---
+As you alre<span style="color: #000000;">ady know, so far DNF has been using a bun</span>ch of C libraries (hawkey, librepo, libsolv, libcomps) while yum was written entirely in Python. From now some of the DNF code will be slowly rewritten into C, more precisely, moved into <a href="https://github.com/rpm-software-management/libhif">libhif</a> project. The next milesto<span style="color: #000000;">ne was reached by m</span>erging <a href="https://github.com/rpm-software-management/hawkey">hawkey</a> into libhif and further we plan to expand libhif to support general functionality of package managers.
+<h3>Why have we merged hawkey into libhif</h3>
+Nowadays there are three major consumers of hawkey - DNF, PackageKit and rpm-ostree. The hawkey API was not in final form yet and was changed constantly based on demands from these package managers. We have merged hawkey project inside libhif and hidden some of not yet stable API.
+
+Merging hawkey into libhif was another step to move more code base of DNF into C. DNF will reuse some of the existing code of libhif. Having this shared library can eliminate inconsistencies about installed packages when DNF and PackageKit is used alternately. Moreover we would like to reuse the same metadata for all package managers to save your bandwidth.
+
+Libhif should contain the common functionality for all package managers. So far libhif is providing high level API by taking care of fetching metadata from mirrors, doing dependency solving and executing RPM transaction. In the future it will support repository configuration parsing, GPG checking and so on. At this time, this is handled by all package managers separately.
+<h3>Facts for Hawkey consumers:</h3>
+<ul>
+	<li>libhif-0.7.0 will obsolete hawkey package</li>
+	<li>some of the C hawkey API from libhif will not be exposed anymore, please use libhif functions instead</li>
+	<li>python bindings will not change and the libhif package will still provide <code>python2-hawkey</code> and <code>python3-hawkey</code></li>
+	<li>API in libhif is still not considered as fully stable yet</li>
+	<li>first release of libhif with hawkey inside is targeted for Fedora 25</li>
+</ul>
+Please watch <a href="https://github.com/rpm-software-management/libhif">libhif project on github</a> and participate in pull request discussions so you can influence the development.

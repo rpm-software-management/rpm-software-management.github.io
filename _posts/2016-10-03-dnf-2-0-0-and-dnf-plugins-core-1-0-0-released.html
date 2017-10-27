@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "DNF 2.0.0 and DNF-PLUGINS-CORE 1.0.0 release candidate released in Fedora rawhide"
+date:   2016-10-03 08:20:18 +0100
+author: Jan Šilhan <jsilhan@redhat.com>
+visible: 1
+categories: dnf
+---
+DNF-2.0 is available for testing! The next major version release of DNF brings many user experience improvements such as more understandable dependency problem reporting messages, weak dependencies shown in transaction summary, more intuitive help usage invoking and <a href="http://dnf.readthedocs.org/en/latest/release_notes.html#release-notes">others</a>. Repoquery plugin has been moved into DNF itself. Whole DNF stack release fixes over 60 bugs. DNF-2.0 release is focused on getting rid of yum incompatibilities i.e. treat yum configuration options the same (`include`, `includepkgs` and `exclude`). Unfortunately this release is not fully compatible with DNF-1. See the list of <a href="http://dnf.readthedocs.io/en/latest/dnf-1_vs_dnf-2.html">DNF-1 and DNF-2 incompatible changes</a> and prepare for the upcoming official release. Especially plugins will need to be changed to <a href="http://dnf.readthedocs.io/en/latest/use_cases.html#plugins-cli-api">the new DNF argument parser</a>. For complete list of changes see <a href="http://dnf.readthedocs.org/en/latest/release_notes.html#release-notes">DNF</a> and <a href="http://dnf-plugins-core.readthedocs.org/en/latest/release_notes.html#release-notes">plugins release</a> notes.

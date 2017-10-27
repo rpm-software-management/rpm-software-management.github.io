@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "builddep and debuginfo-install plugins now available in dnf-plugins-core"
+date:   2014-02-25 17:00:37 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+If you often build packages from source RPM or even from the upstream checkout then we've got good news: the <a href="http://yum.baseurl.org/gitweb?p=yum-utils.git;a=blob;f=yum-builddep.py;hb=HEAD">builddep plugin from yum-utils</a> has been ported to DNF and <a href="https://admin.fedoraproject.org/updates/dnf-plugins-core-0.0.4-1.fc20">released for Fedora today</a>. <b>Edit:</b> The plugin is only added to the Fedora package in version <a href="https://admin.fedoraproject.org/updates/dnf-plugins-core-0.0.5-2.fc20">0.0.5</a>.
+</p>
+
+<p>
+Given a .spec file or an .srpm, the builddep command fetches all of its dependencies, like:
+</p>
+
+<p>
+<code>
+dnf builddep ~/Downloads/librepo-1.5.2-2.fc20.src.rpm
+</code></p>
+
+<p>
+offers a transaction that installs everything needed so that <code>rpmbuild --rebuild ~/Downloads/librepo-1.5.2-2.fc20.src.rpm</code> does what it's supposed to and doesn't halt on dependencies.
+</p>
+
+<p>
+Another useful plugin we moved to dnf-plugins-core recently is <b>debuginfo-install</b>. For a given package it downloads all relevant debuginfo packages, so that debugging a core dump or other problem with it in gdb gives readable, decoded tracebacks and other information, like for instance:
+</p>
+
+<p><code>
+dnf debuginfo-install python-librepo
+</p></code>
+
+<p>There's <a href="http://yum.baseurl.org/wiki/YumUtils/DebugInfoInstall">documentation for the Yum util command</a>, we're still behind on proper documentation in DNF.</p>
+
+<p>Hope you'll find the new plugins useful.</p>

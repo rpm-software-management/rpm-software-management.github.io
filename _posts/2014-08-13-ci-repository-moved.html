@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "CI Repository Moved"
+date:   2014-08-13 08:25:02 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+Migrating our <a href="http://dnf.baseurl.org/2014/01/29/nightly-builds-of-dnf-available/">CI service</a> to F21, the URL of the builds repository has changed. The new repo config is below. Use the service and the builds at your own risk.
+</p>
+
+<pre>
+[CI]
+name = DNF CI
+enabled = 0
+baseurl=http://jenkins.cloud.fedoraproject.org/job/DNF/lastSuccessfulBuild/artifact/fedora-21-x86_64-build/
+gpgcheck=false
+metadata_expire=3600
+</pre>

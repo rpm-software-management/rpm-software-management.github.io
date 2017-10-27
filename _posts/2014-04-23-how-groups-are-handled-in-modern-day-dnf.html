@@ -1,0 +1,49 @@
+---
+layout: post
+title:  "How Groups Are Handled in Modern-day DNF"
+date:   2014-04-23 06:43:34 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+Probably ever since comps.xml was invented, and putting aside its undeniable usefulness for the installer users who could pick and choose groups of packages with a few clicks, the exact semantics of operations like <code>yum group install "some group"</code> and <code>yum group remove "some group"</code>, or even <code>yum group upgrade "some group"</code> has been either not useful (the pre-groups-as-objects era) or not clear (the post-groups-as-objects era). Our hope is that the upcoming implementation of groups-as-objects in DNF 0.5.0, with the accompanying documentation in DNF manual as well as this blog post will bring an end to that. I am not going to go into details of different package membership types or categories and environments. These concepts are flawed and their chances of surviving into next few years worth of Fedora releases are mediocre or less.
+</p>
+
+<p>
+First are foremost: group operations exist to simplify admin's life by letting him operate arbitrarily large sets of packages with simple commands. While they do not interfere with other DNF commands, to take maximum value out of them, one should install the system using Anaconda with DNF backend and then manage software using the group command as much as possible. The groups-as-objects DNF remembers what groups were installed and what packages were installed as their parts, so installing some packages manually with the install command hinders DNF's ability to deduce what is really meant to be installed as a part of a group.
+</p>
+
+<p>
+To show some examples:
+
+<code>
+dnf group install "some group"
+</code>
+
+goes ahead and looks what packages "some group" contains. If they are A, B and C and C is already installed, DNF installs A and B and remembers that "some group" is installed now. If the next day the admin decides he no longer needs "some group", then:
+
+<code>
+dnf group remove "some group"
+</code>
+
+removes A and B again but leaves C intact. In this case, DNF knows that C does not come from any one group but rather was installed on explicit user's demand or perhaps is a dependency of some other package from earlier. Anyway, DNF won't remove C in this case. (Let's disclose it right here that if an intervening transaction added X depending on B, then B <b>and X</b> both get removed now. The solver should be smarter than that but a) we're not quite there yet b) this is consistent with the rest of DNF operation where "last in wins".). If an intervening operation added another B-containing group then <code>group remove "some group"</code> wouldn't remove B either, so to keep it installed for the other group.
+<p>
+
+<p>
+But removal of groups is perhaps not so interesting. What is interesting is keeping the software installed. If, after some time, the distribution release engineering decides D is now part of "some group", then
+
+<code>
+dnf group upgrade "some group"
+</code>
+
+adds D and upgrades the other packages of the group. Similarly, it can be decided that A is no longer in "some group", then the upgrade would remove it. Keep calm and trust the comps.
+</p>
+
+<p>
+Since DNF remembers what groups are installed and what packages were considered group members at a particular time, it actually does what one would expect when he goes ahead and manually removes B from a system where "some group" is installed and then runs upgrade on "some group": DNF won't install it back. And that's one of the main goals we had when designing the new group-handling system: listen to the admins wishes and maintain them through upgrades as much as other constrains will let us.
+</p>
+
+<p>
+Happy grouping.
+</p>

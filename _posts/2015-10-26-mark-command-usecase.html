@@ -1,0 +1,31 @@
+---
+layout: post
+title:  "Mark command usecase"
+date:   2015-10-26 13:35:32 +0100
+author: Michal Luščon <mluscon@redhat.com>
+visible: 1
+categories: dnf
+---
+Dear DNF users,
+
+it is an honor for me to introduce to you our newly implemented  <strong>mark</strong> command. If you are now wondering what was the motivation behind implementing this feature and also expecting some tidbits from DNF development, you are in the right spot. So prepare your favorite hot beverage and stay tuned. The story now begins:
+
+In the early days of DNF development, the original members of  the team decided that the cool feature called <strong>clean_requirements_on_remove</strong> should have been enabled by default . This is exactly that feature of DNF which prevents your system from overblooting by installed, but no longer needed dependencies of packages.
+
+Unfortunately, the world of rpm distribution is not always as bright and shiny as it might seen for the first look. There are situations where a manual user intervention is necessary, so lets take a look at a few of them:
+
+PROBLEM: I used package manager incompatible with DNF for installation of packages A and B. Consequently DNF wants to autoremove these packages.
+
+SOLUTION: Packages that user wants to preserve in his system can be marked as installed by user via following command <strong>dnf mark install A B</strong>.
+
+PROBLEM: I installed package A alongside with his dependencies B and C. Now I want to remove package A but keep the package C.
+
+SOLUTION: Mark package C as user installed by <strong>dnf mark install C</strong>.
+
+PROBLEM: I installed package A and consequently installed package B which depends on package A. Now I decided to remove package A but it is not possible without removal of package B.
+
+SOLUTION:  Mark package A for removal by <strong>dnf mark remove A </strong>and package A will be autoremoved once there are no packages dependent on package A.
+
+Thank you for your attention.
+
+&nbsp;

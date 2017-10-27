@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "DNF 0.5.0 Released"
+date:   2014-04-23 11:49:54 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+We're glad to announce that 0.5.0 is being released into the wild today. There is twenty bugzillas fixed as documented in the <a href="http://akozumpl.github.io/dnf/release_notes.html#id31">0.5.0 release notes</a>.
+</p>
+
+<p>
+As my post from earlier today explains, the focal point of changes in this release was <a href="http://dnf.baseurl.org/2014/04/23/how-groups-are-handled-in-modern-day-dnf/">groups and how to approach them sanely.</a> Then there is some niceties like improved documentation, fixed resource leaks and one feature that hopefully many everyday users will find useful: the <code>--refresh</code> option that forces expiration of all repos, thus ensuring given operation runs with the latest & greatest metadata (just don't come back complaining it takes time).
+</p>
+
+<p>
+The API was extended massively, but nothing is dropped or deprecated in 0.5.0.
+</p>
+
+<p>
+In Fedora, we are going to wait if the <a href="http://koji.fedoraproject.org/koji/buildinfo?buildID=512598">Rawhide build</a> users do not report any critical problems with the build before attempting to get 0.5.x builds into F20.
+</p>

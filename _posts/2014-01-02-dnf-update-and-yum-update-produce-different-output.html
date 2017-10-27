@@ -1,0 +1,15 @@
+---
+layout: post
+title:  "\"dnf update\" and \"yum update\" produce different output"
+date:   2014-01-02 09:40:14 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+Seeing many users confused about the difference in the outputs and transactions of running <code>yum update</code> versus <code>dnf update</code> I feel I should explain that this is the expected result and not a bug. One reason is that <a href="http://akozumpl.github.io/dnf/cli_vs_yum.html#dependency-processing-details-are-not-shown-in-the-cli">DNF does not list update candidates as it explores them</a>. More frequently however the reporter means actual difference in the proposed transaction. This is most often because the metadata the two packagers are working with were taken at a different time (DNF has a notoriously looser schedule on metadata updates to save time and bandwidth), and sometimes also because the depsolvers inside are designed to take a different course of action when encountering specific update scenario.
+</p>
+
+<p>
+The bottom line is: unless a real update problem occurs (i.e. DNF refuses to update a package that Yum updates) with the same set of metadata (<code>dnf clean all; yum clean all</code>), this is not an issue.
+</p>

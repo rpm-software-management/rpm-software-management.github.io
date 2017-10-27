@@ -1,0 +1,32 @@
+---
+layout: post
+title:  "Plugins Are On"
+date:   2014-01-14 08:28:24 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+The current 0.4.11 release of DNF is the first one to support plugins to some useful degree. We released dnf-plugins-core in Fedora yesterday, containing the two plugins: <a href="https://github.com/akozumpl/dnf-plugins-core/blob/master/plugins/noroot.py">noroot</a> that blocks any potential RPMDB-transacting operation early for non-root users, thus saving them time and bandwidth, and <a href="https://github.com/akozumpl/dnf-plugins-core/blob/master/plugins/kickstart.py">kickstart</a> that lets one install packages via a kickstart file.
+</p>
+
+<p>
+People are already asking how to contribute plugins. The answer is: just build them. Package them on your own for Fedora or however you like. We might try to arrange to have them moved into dnf-plugins-core later. The main criteria would be:
+</p>
+
+<ul>
+<li>The plugin is licensed under GPLv2+</li>
+<li>The code is in a <a href="https://github.com/akozumpl/dnf/wiki/Hacking">maintainable state</a> or the contributor agrees to maintaining it.</li>
+<li>There is a serious interest of at least some users in the provided functionality.</li>
+<li>The presence of the plugin does not cause worse user experience for the majority of users.</li>
+</ul>
+
+<p>
+The API is not fully fledged yet. But try to stick to those <a href="http://akozumpl.github.io/dnf/api.html">parts that are</a>, because by using the undocumented calls one is running the risk of having them pulled off from under one's feet later. Instead consider opening a bugzilla that states the use case of a missing call.
+</p>
+
+<p>
+<i>Fedora specific</i> why do we ship plugins separately from the main package? Mostly maintainability/engineering reasons: releasing separately from the main package, with less rigorous documentation, without as much worrying about CLI compatibility, with experimental features coming and going. But also to reduce dependencies of the main package: having the kickstart plugin in the main package for instance would mean a pykickstart dependency (besides the extra dep, <a href="https://bugzilla.redhat.com/show_bug.cgi?id=985310">pykickstart is not yet py3 ready</a>). Think of DNF in this case as a lib and the plugins as clients.
+</p>
+
+<p><b>Edit:</b> We also should point out that some fundamental features (like excluding packages from transactions) should not be done on the plugin level because these features need to be common with other packaging tools such as PackageKit.</p>

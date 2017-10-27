@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "DNF 0.4.17 Released"
+date:   2014-03-05 13:22:31 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+After a week's development sprint we are back with a new version today.
+</p>
+
+<p>
+It was an unfortunate side-effect of the refactorings in <a href="http://dnf.baseurl.org/2014/02/24/dnf-0-4-15-released/">0.4.15</a> that DNF users of the two last releases sometimes experienced crashes and garbled output during the download phases. This release contains a long list of fixes for those, along with extensions to help us chase similar problems in the future.
+</p>
+
+<p>There are new API calls in the repo management department and a bug fixed that <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1058224">prevented many from using <code>--cacheonly</code></a>. Linking to the <a href="http://akozumpl.github.io/dnf/release_notes.html#id28">release notes</a>.
+</p>
+
+<p>
+Behind the scenes a lot of work is going into reimplementation of <code>repo-pkgs</code> command from Yum. With <code>repo-pkgs</code>, but also other commands, we are often having a hard time determining which subcommands are legacy and which are used/have use cases. Users' insights on this problem would be welcome, i.e. we'd be really interested to know what you think is worth dropping and why.
+</p>

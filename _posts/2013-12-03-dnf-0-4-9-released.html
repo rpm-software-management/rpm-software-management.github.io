@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "DNF 0.4.9 Released"
+date:   2013-12-03 16:57:25 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+</p>
+Hi! The 0.4.9 has just been released, and the build is already on its way to <a href="https://admin.fedoraproject.org/updates/dnf-0.4.9-1.fc20">Fedora 20 testing</a> and <a href="http://akozumpl.github.io/dnf/release_notes.html#id20">release notes are online</a>.
+</p>
+
+<p>
+What's new? Plenty! We finally support <a href="http://akozumpl.github.io/dnf/api_plugins.html">plugins</a>. The interface looks poor so far as we rushed to get the release out, but it already can be used to <a href="https://github.com/akozumpl/dnf-plugins/blob/master/plugins/noroot.py">implement</a> a big <b>HALT</b> when a non-root tries to run an RPMDB-changing command (like <code>dnf upgrade</code>).
+</p>
+
+<p>
+Doing <code>history rollback</code> is supported again. So is <a href="https://bugzilla.redhat.com/show_bug.cgi?id=884615">printing out just the installed packages selected by user</a>. Can come in handy when moving to Fedora 20, no?
+</p>
+
+<p>
+Another addition we were often asked for was a way to support replacing a package with a conflicting package <a href="https://bugzilla.redhat.com/show_bug.cgi?id=963137">without disturbing any packages depending on these</a>. This DNF version supplies the <code>--allowerasing</code> switch to facilitate just that.
+</p>
+
+<p>
+On top of that a couple of bugs and a couple of API extensions. The <a href="http://akozumpl.github.io/dnf/release_notes.html#id20">release notes</a> mention them all.
+</p>

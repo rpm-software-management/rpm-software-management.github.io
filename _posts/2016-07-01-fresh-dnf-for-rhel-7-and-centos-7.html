@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "Fresh DNF for RHEL 7 and CentOS 7"
+date:   2016-07-01 11:41:26 +0100
+author: Jan Šilhan <jsilhan@redhat.com>
+visible: 1
+categories: dnf
+---
+DNF is in EPEL for more than one year, unfortunately there was still the old DNF-0.6.4 version. Over that time in DNF were implemented a lot of great features and plenty of bugs have been fixed. DNF (especially its libraries) could not be updated in EPEL repository because of its policy. Now we have prepared fresh DNF-1.1.9 for RHEL 7 and CentOS 7 users in our COPR repository. Note this is still experimental preview not supported by Red Hat.
+
+In order to get DNF-1.1.9 in RHEL 7 or CentOS 7:<a href="https://support.rackspace.com/how-to/install-epel-and-additional-repositories-on-centos-and-red-hat/">Enable EPEL repository</a> for additional DNF dependencies:
+<pre><code># <code>wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+# sudo rpm -Uvh epel-release-latest-7*.rpm</code></code></pre>
+Add DNF stack repository:
+<pre><code># cat &lt;&lt;EOF &gt; /etc/yum.repos.d/dnf-stack-el7.repo
+[dnf-stack-el7]
+name=Copr repo for dnf-stack-el7 owned by @rpm-software-management
+baseurl=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-stack-el7/epel-7-\$basearch/
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/@rpm-software-management/dnf-stack-el7/pubkey.gpg
+enabled=1
+enabled_metadata=1
+EOF</code></pre>
+Install DNF:
+<pre><code># yum install dnf
+</code></pre>
+Enjoy the newest DNF ;)

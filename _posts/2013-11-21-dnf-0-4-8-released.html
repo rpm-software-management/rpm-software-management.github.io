@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "DNF 0.4.8 Released"
+date:   2013-11-21 14:28:58 +0100
+author: Aleš Kozumplík <akozumpl@redhat.com>
+visible: 1
+categories: dnf
+---
+<p>
+The 0.4.8 was just released today (<a href="http://akozumpl.github.io/dnf/release_notes.html#id19">release notes</a>). The focal point was to add more crucial pieces to the API and there are still areas where we lag, but at least we're starting to <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1029022">get some feedback and discussion running on the API.</a>
+</p>
+
+<p>
+In Fedora we are shipping <code>python3-dnf</code> package now. The package supplying <code>/usr/bin/dnf</code> is still the Python 2 DNF package, so when you run <code>dnf upgrade</code> etc, from the command line it is executed under the current Python (unless forced by e.g. <code>/usr/bin/python3 /usr/bin/dnf upgrade</code>). We're ready to drop Python 2 support as soon as Anaconda is running the Py3 DNF. Extension authors should start new projects with the Py3 package.
+</p>
+
+<p>
+Other than that there are some bugfixes in the release, including <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1030297">support for installing packages from http</a>, <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1030998">better installs from a pathname</a> and <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1029948">listing comps environments in <code>dnf group list</code></a>.
+</p>

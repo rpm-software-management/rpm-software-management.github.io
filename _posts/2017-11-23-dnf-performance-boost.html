@@ -1,0 +1,37 @@
+---
+layout: post
+title:  "DNF performance boost"
+date:   2017-11-23 14:00:00 +0100
+author: Jaroslav Mracek <jmracek@redhat.com>
+visible: 1
+categories: dnf
+---
+Since the last blog there were several releases that enhance functionality and mostly performance
+especially visible with multiple package arguments. Just try "dnf --assumeno reinstall $(rpm -qa)"
+with libdnf-0.9.0 and libdnf-0.11.1 and differences is easily visible. But the real huge improvement
+can be seen when results are compared to YUM.
+
+
+<h4>DNF-2.7.5</h4>
+<ul>
+	<li>Enhanced performance for excludes and includes handling</li>
+	<li>Solved several memory leaks</li>
+	<li>Additionally 8 bug reports solved</li>
+	<li><a href="http://dnf.readthedocs.org/en/latest/release_notes.html#release-notes">Detailed information about DNF releases</a></li>
+</ul>
+<h4>DNF-PLUGINS-CORE-2.1.5</h4>
+<ul>
+	<li>Added four new options for <strong><em>list</em></strong> subcommand of <strong><em>copr</em></strong> plugin</li>
+	<li>Additionally 2 bug reports solved</li>
+	<li><a href="http://dnf-plugins-core.readthedocs.org/en/latest/release_notes.html#release-notes">Detailed information about DNF-PLUGINS-CORE releases</a></li>
+</ul>
+<h4>DNF-PLUGINS-EXTRAS-2.0.4</h4>
+<ul>
+	<li>Fixed several issues of system-upgrade plugin</li>
+	<li><a href="http://dnf-plugins-extras.readthedocs.org/en/latest/release_notes.html#release-notes">Detailed information about DNF-PLUGINS-EXTRAS releases</a></li>
+</ul>
+<h4>LIBDNF-0.11.1</h4>
+<ul>
+	<li>Huge performance boost for queries with <strong><em>arch</em></strong> and <strong><em>name</em></strong> filters (20x boost) </li>
+	<li>Additionally 4 bug reports solved</li>
+</ul>

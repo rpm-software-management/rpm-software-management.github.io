@@ -1,0 +1,107 @@
+---
+layout: post
+title:  "Announcing DNF 3 development"
+date:   2018-03-22 13:00:00 +0100
+author: Daniel Mach <dmach@redhat.com>, Jaroslav Mracek <jmracek@redhat.com>
+visible: 1
+categories: dnf
+---
+
+We are pleased to announce that development of DNF 3 has started.
+This version focused on performance improvements, new API and consolidating
+the whole software management stack. That's why the rest of the text is more
+about libdnf than DNF, which should become smaller and only wrap underlying libdnf library.
+
+<h2>What's going on with libdnf?</h2>
+If you are watching DNF and libdnf development, you may ask what's going on lately.
+There is a lot of activity in libdnf GIT. Let us share our plans with you.
+Originally there were two libraries - hawkey providing query and dependency resolution
+interface to DNF and libhif as a PackageKit backend. These two merged into libdnf,
+but the merge hasn't been fully finished. The technical debt grows as new code is being
+added and there's even disparity between libdnf and DNF.
+We decided to change this and make libdnf sane again.
+
+
+<h2>Improvements made so far</h2>
+We made several improvements to queries already.
+They are executed as part of all DNF commands and have significant performance impact.
+We focused mainly on security queries and searching packages by Name or full NEVRA.
+
+<br />
+
+Let's look at some numbers. The chart shows execution times (lower is better) of several DNF commands using 3 different versions of libdnf:
+<ul>
+    <li>0.9.1 - initial version in Fedora 26</li>
+    <li>0.11.1 - latest released version in Fedora 26 and 27</li>
+    <li>0.13.0 - development version in GIT</li>
+</ul>
+
+<img src="../img/performance_libdnf_0.9.1_to_0.13.0.svg" />
+
+<h2>What we want to achieve</h2>
+<ul>
+    <li>Performance improvement</li>
+    <li>
+        Consistent behavior across the whole software management stack
+        <ul>
+            <li>Move existing business logic from DNF to libdnf</li>
+            <li>Remove duplicate code</li>
+        </ul>
+    </li>
+    <li>Well defined and maintainable API</li>
+    <li>New high level functionality (like “dnf.Base()”)</li>
+    <li>Remain compatible with existing APIs (C/Python) as much as possible</li>
+</ul>
+
+
+<h2>How to move forward</h2>
+We decided to move from libdnf C to C++ for several good reasons:
+<ul>
+    <li>C++ is a standardized object oriented language with good compiler support</li>
+    <li>Existing C code compiles with C++ compiler - we can reuse some existing code as is</li>
+    <li>C++ 11 is supported by GCC in RHEL 7 / CentOS 7</li>
+    <li>C++ has more "batteries included" than C (classes, vectors and maps, shared pointers, algorithm library, etc.)</li>
+    <li>You don't have to worry about raw pointers in C++.</li>
+    <li>SWIG bindings (C++ objects wrapped in shared pointer naturally bind to Python objects)</li>
+</ul>
+
+
+<h2>Road-map</h2>
+Doing all the consolidation, we have unique opportunity redesign libdnf. This is what we are planning:
+<ol>
+    <li>
+    Preparation (mostly done)
+        <ul>
+            <li>Remove unused functionality</li>
+            <li>De-duplicate some code between DNF and libdnf</li>
+        </ul>
+    </li>
+    <li>
+        DNF Integration (in progress)
+        <ul>
+            <li>Design new functionality in libdnf , and replace corresponding DNF code in Python</li>
+        </ul>
+    </li>
+    <li>
+        Redesign libdnf
+        <ul>
+            <li>Split libdnf into subsystems</li>
+            <li>Provide new high-level interface (replacing dnf.Base and libdnf context)</li>
+        </ul>
+    </li>
+    <li>
+        Broader integration
+        <ul>
+            <li>Use the new libdnf API in PackageKit, rpm-ostree and microdnf</li>
+        </ul>
+    </li>
+</ol>
+
+
+<h2>Benefits</h2>
+You may ask: "How will I benefit from all these changes?"
+First of all, you will get consistent user experience from all software management tools.
+Wouldn't be great if PackageKit and DNF shared repository and package cache?
+And that's just a tip of the iceberg. You will also get much better performance,
+because the DNF team has been analyzing the whole stack.
+Asking "why" often results in removing bottlenecks all over the place.

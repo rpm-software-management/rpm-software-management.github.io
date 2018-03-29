@@ -48,16 +48,16 @@ Let's look at some numbers. The chart shows execution times (lower is better) of
             <li>Remove duplicate code</li>
         </ul>
     </li>
-    <li>Well defined and maintainable API</li>
-    <li>New high level functionality (like “dnf.Base()”)</li>
+    <li>Well-defined and maintainable API</li>
+    <li>New high-level functionality (like “dnf.Base()”)</li>
     <li>Remain compatible with existing APIs (C/Python) as much as possible</li>
 </ul>
 
 
 <h2>How to move forward</h2>
-We decided to move from libdnf C to C++ for several good reasons:
+We decided to move libdnf from C to C++ for several good reasons:
 <ul>
-    <li>C++ is a standardized object oriented language with good compiler support</li>
+    <li>C++ is a standardized object-oriented language with good compiler support</li>
     <li>Existing C code compiles with C++ compiler - we can reuse some existing code as is</li>
     <li>C++ 11 is supported by GCC in RHEL 7 / CentOS 7</li>
     <li>C++ has more "batteries included" than C (classes, vectors and maps, shared pointers, algorithm library, etc.)</li>
@@ -67,7 +67,7 @@ We decided to move from libdnf C to C++ for several good reasons:
 
 
 <h2>Road-map</h2>
-Doing all the consolidation, we have unique opportunity redesign libdnf. This is what we are planning:
+Doing all the consolidation, we have a unique opportunity to redesign libdnf. This is what we are planning:
 <ol>
     <li>
     Preparation (mostly done)
@@ -79,7 +79,7 @@ Doing all the consolidation, we have unique opportunity redesign libdnf. This is
     <li>
         DNF Integration (in progress)
         <ul>
-            <li>Design new functionality in libdnf , and replace corresponding DNF code in Python</li>
+            <li>Design new functionality in libdnf, and replace corresponding DNF code in Python</li>
         </ul>
     </li>
     <li>
@@ -101,7 +101,7 @@ Doing all the consolidation, we have unique opportunity redesign libdnf. This is
 <h2>Benefits</h2>
 You may ask: "How will I benefit from all these changes?"
 First of all, you will get consistent user experience from all software management tools.
-Wouldn't be great if PackageKit and DNF shared repository and package cache?
+Wouldn't it be great if PackageKit and DNF shared repository and package cache?
 And that's just a tip of the iceberg. You will also get much better performance,
 because the DNF team has been analyzing the whole stack.
 Asking "why" often results in removing bottlenecks all over the place.
